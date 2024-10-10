@@ -34,6 +34,9 @@ app.use(( error, request, response, next) => {
     });
 });
 
+const cors = require("cors");
+app.use(cors());
+
 const uploadConfig = require("./configs/upload");
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
