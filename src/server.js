@@ -34,6 +34,9 @@ app.use(( error, request, response, next) => {
     });
 });
 
+const uploadConfig = require("./configs/upload");
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
+
 const PORT = 3000;
 
 app.listen(PORT, () => { console.log(`Server is running on ${PORT}`)});
