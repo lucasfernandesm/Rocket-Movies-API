@@ -6,7 +6,7 @@ const knex = require("../database/knex");
 
 class NotesController {
     async create(request, response) {
-        const { title, description, rating, movie_tags } = request.body;
+        const { title, description, rating, markers } = request.body;
         const user_id = request.user.id;
 
         if (rating < 0  || rating > 5 ) {
@@ -20,7 +20,7 @@ class NotesController {
             user_id
         });
 
-        const tagsInsert = movie_tags.map(name => {
+        const tagsInsert = markers.map(name => {
             return {
                 note_id,
                 name,
@@ -87,8 +87,6 @@ class NotesController {
                 tags: noteTags
             }
         })
-
-        console.log(userTags)
 
         return response.json(notesWithTags);
     }
